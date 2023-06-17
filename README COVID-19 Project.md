@@ -20,7 +20,7 @@ To view and interact with the choropleth map, please follow these steps:
 
 Please note that a stable internet connection may be required for certain map functionalities, as some features rely on online map tile services.
 
-## Screenshots
+## Screenshot
 ![Choropleth Map Screenshot](https://user-images.githubusercontent.com/89562611/246631603-6f8f2e3b-404d-48dd-9a65-47902c54e9ba.png)
 
 Here is a static screenshots of the choropleth map to give you an idea of its appearance and functionality.
