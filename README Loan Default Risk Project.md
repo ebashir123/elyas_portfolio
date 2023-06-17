@@ -5,6 +5,8 @@ Welcome to my data analysis project showcasing an analysis of **loan data** from
 ## Project Description
 In this project, I analyzed bank loan data in an effort to address the factors that lead to increased default rates, so as to mitigate any further risks and provide these financial companies with better insights on how to address several factors regarding their consumers. This includes summary tables and statistical analysis on variables, as well as data visualization via **bar charts**, **density histograms**, and **boxplots**. Additionally, models such as **logistic regression**, linear discriminant analysis (**LDA**), and **random forests** were implemented to assess the data.
 
+**NOTE: You must run the file in order to see the tables/graphs/models**
+
 ## How to Run
 To view and interact with the visualizations, please follow these steps:
 
