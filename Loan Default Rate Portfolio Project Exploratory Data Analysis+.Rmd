@@ -1,0 +1,329 @@
+---
+title: "Final Project"
+output:
+  word_document: default
+  pdf_document: default
+---
+
+
+**Elyas Bashir**:
+
+
+```{r warning = FALSE, message = FALSE}
+# Suppress dplyr summarise grouping warning messages
+options(dplyr.summarise.inform = FALSE)
+
+## Add R libraries here
+library(tidyverse)
+library(tidymodels)
+library(vip)
+library(ggplot2)
+library(rpart.plot)
+library(ranger)
+library(parsnip)
+library(discrim)
+
+# Load data
+loans_df <- read_rds("D:/R Downloads/loan_data.rds")
+loans_df
+```
+# Summary of Results
+
+### Introduction
+
+In this report we will address the factors that lead to loan defaults and implement various techniques to mitigate these risks. It is imperative that banks and consumers have an esteemed level of trust with one another when loans are involved. The goal of our analysis is to determine the various factors that may/may not lead to an increased risk in defaulting loans, and then provide our assessment on how banks, consumers, and financial corporations can mitigate these risks. We will address this analysis in the best interest of all parties while accounting for multiple variables, as it is critical to the success of our financial systems.
+
+We will answer questions that deal with multiple variables including loan amounts, interest rates, application types, length of loans, customer home ownership status, annual income, and missed payment history. Utilizing these variables, we can answer questions such as, "Are there differences in loan default rates by application type?, Is there a relationship between loan default rates and the home ownership status of customers?, and more." The purpose of these questions will be to understand how these various factors impact our default rates in an effort to impose change within financial practices of our banks and how they impact their consumers.
+
+The variables chosen for this study are important as their relationships with defaulted loans indicate trends or patterns that can be assessed. For example, loan amount and interest rate are both utilized together as they determine both the capital increase of receiving a loan, as well as the interest needed to pay it off. Some variables like home ownership and annual income will be analyzed individually, as they do not necessarily correlate with the other variables present in our data. It is essential that we determine the most relevant variables to use in order to maximize the potential for success of our assumptions and to minimize errors.
+
+### Key Findings
+
+We can address how application and loan type had both impacted the loan default rate. We determined that joint applications have a 9% increased chance of defaulting loans than individual applicants, and 5-year loans had a 55% chance to default as opposed to 27% for 3-year loans. Taking these factors into account, we can utilize this information to make more informed decisions for our banks. As we take a look at our customers' home ownership status and missed payment history, we can decipher from our bar chart that customers who are renting tend to have an increased risk of defaulting on their loans. Furthermore, it seems as though mortgaging is slightly better for customers than renting in terms of loan risk and safety. We identified that, when paired together, loan amount and interest rate are crucial in the impact of our loan's default rate, as depicted in our box plot. We can see how applicants who tend to default on their loans are accepting loans with generally higher rates of interests and low capital amounts. Lastly, we can see via the histogram how annual income does not seem to be a major factor in loan default rates. This is interesting as it is generally accepted that higher income individuals tend to be able to pay off their loans easier than those who make less. While our histogram does show some instances of that happening, it is not varied enough to where we can back up that assertion. 
+
+### Best Classification Model
+
+In this analysis, we conducted classification via logistic regression, linear discriminant analysis, and random forest modeling. Ultimately, our logistic regression model had the best performance. From the confusion matrix conducted, we can determine that this model had a true positive rate of 94.8% and a true negative rate of 95%; resulting in a false positive rate of 5% and a false negative rate of 5.2%. This depicts how the model does a good job at assessing the majority of positive and negative instances, with its rate of error being relatively low, however this is more room for improvement of our model. Essentially, our model is predicting correctly for roughly 95% of cases.
+
+As for monitoring our model's performance, we can utilize its area under the ROC curve. Essentially, the ROC curve is a plot of the true positive rate (94.8%) by the false positive rate (5.2%). As we understand the area under this curve, it can depict a value from 0 to 1, whereby the higher the area under the curve, the better the model can determine positive and negative instances accurately. It is imperative that we utilize this metric as it is a central part of tracking the performance of our model. With a ROC AUC score of 0.99, this model is almost perfect in its performance capability. It does a great job at assessing the given data and providing an accurate assumption on its variables. For example, given the data of loan default rates, this model can help to eliminate many false negatives or false positives that arise from data.
+
+
+### Recommendations on reducing default rates
+
+It can be noted that taking in applicants who file individually via a 3-year loan may be the best scenario for the lowest risk of defaulting. Additionally, taking in applicants who file jointly for 5-year loans bear the most risk. This can be attributed to our data summary of the loan's term length impacting default rates, whereby customers with 5-year loans defaults 28% more than those with 3-year loans. Additionally, we can see how the summary table of application types points out how joint applications cause 9% more defaults than individual. Therefore, we recommend that banks do not grant 5-year loans as often as 3-year loans, and that they should favor individual applicants over joint. For the customers, it may also be in their best interest to file individually for 3-year loans. This can benefit the banks as customers must pay within a more reasonable time frame (3 years) with less risk of defaulting. As for the customers, though it gives them less time and less freedom via an individual application, it can hold a single individual responsible instead of relying on multiple individuals, potentially reducing the risk of all parties involved.
+
+Our banks can utilize the information in the bar charts alongside our summary of customer missed payment history, whereby customers that are renting tend to have an increased risk of defaulting on their loans, and customers who missed payments within the last 2 years were 9% more likely to default on their loans. Therefore, we may affirm that it is in the best interest of our banks to favor customers who either mortgage or own their home, and for customers who do not miss payments. Although this does not mean that customers who miss payments or rent houses should be ignored, there should be other variables that these customers must meet in order to apply for their respective loans. This, in turn, may seek to decrease the risk of both creditors and consumers, while also allowing for a beneficial system whereby customers who have good payment history are rewarded for their timeliness.
+
+As shown in our box plot, applicants who tend to default on their loans are accepting loans with generally higher rates of interests and low capital amounts. This may be attributed to our banks essentially giving these applicants less money but high interest rates to pay off their respective loan. We cannot attribute these to be the sole cause of high default rates, however, interest rates alongside the amount of the loan have a heavy impact. Therefore, our banks should seek to remedy this issue by offering lower interest rates with higher capital in order to satisfy the bank and customer's needs. This can benefit the customer as they will be able to pay off loans with reasonable rates of interest. As for the banks, though they may not make as much money initially, the mitigation of defaulting payments can ensure that they are getting compensated thoroughly in the long run.
+
+We can see via the histogram how annual income does not seem to be a major factor in loan default rates. Therefore, our banks should not delineate from a loan contract due to a customer's annual income, rather the banks should factor in our other variables, such as those mentioned prior. This can be a benefit for customers who feel as though their annual income is lower than the average American, as it provides all parties a relatively equal opportunity to receive a loan, regardless of income level.
+
+
+### Conclusion
+
+In conclusion, we discussed various methods that we believe banks should/should not implement to better supplement their consumer base and their financial status. We believe that banks should prioritize loan length and application type, in which 3-year individual loans are favored and 5-year joint loans are not favored. Additionally, we seek to remedy the needs of both banks and consumers by opting for those who have a clean payment history, and by being cautious of those who are renting as opposed to those who have a mortgage or house ownership. 
+
+As for the amount of the loan granted with interest rates, we understand that banks still must make a profit off of the interest while ensuring that customers do not default on payments. Therefore, a small interest rate decrease for customers who accept higher amounts of capital from loans can be crucial when intaking the other factors mentioned before. We will not, however, make a recommendation based off of consumer annual income as it does not heavily impact the default rate like these other variables do. 
+
+We created the logistic regression model as the best practice to classify the data and how it relates. We can apply the performance metrics along with the error predictions to understand how our model can be utilized in conjunction with our data. For example, understanding the ROC area under the curve will allow us to generate better performance of our model, in turn creating a sense of understanding for the variables that impact default rates. We can then utilize this model and the data to make informed business decisions, such as the recommendations listed above.
+
+Appendix/Appendices
+
+# Data Analysis 
+
+## Question 1
+
+
+**Question**: **Are there differences in loan default rates by application type?**
+
+**Answer**: Yes, the data indicates that joint applications have more than a 9% increase in default rates in comparison to individual-filing applications. Of the 616 that filed jointly, 45% of their loans defaulted, whereas individual filing only consisted of 36% defaulting. 
+
+
+```{r}
+# Summary Table for Loan Default Rates by Application Type
+
+loans_df %>%
+  group_by(application_type) %>%
+  summarize(n_customers = n(),
+            customers_default = sum(loan_default == 'yes'),
+            default_percent = 100 * mean(loan_default == 'yes'))
+
+
+```
+
+
+
+## Question 2
+
+
+**Question**: **Are there differences between loan default rates in accordance with the loan's term length?**
+
+**Answer**: Yes, there is a major distinction between defaulting rates for 3-year and 5-year loans. The majority of 5-year loans lead to a default, at an alarming rate of 55% which is nearly double the rate of 3-year loans at 27%. It is worth noting that most customers opt for the 3-year loan, and yet the total that opt for the 5-year loan is still greater.
+
+
+```{r}
+# Summary Table for Loan Default Rates by Term Length
+
+loans_df %>%
+  group_by(term) %>%
+  summarize(n_customers = n(),
+            customers_default = sum(loan_default == 'yes'),
+            default_percent = 100 * mean(loan_default == 'yes'))
+
+
+```
+
+
+## Question 3
+
+
+**Question**: **Is there a relationship between loan default rates and the home ownership status of customers?**
+
+**Answer**: Yes, the bar chart depicts that customers who are renting are more likely to default than customers who either own a house or have a mortgage. Although customers at each level are less likely to default given normal circumstances, renting seems to be the worst of the three home ownership types. Additionally, the majority of those who mortgage are generally not defaulting on loans.
+
+
+```{r}
+# Bar Chart for Loan Default Rates by Homeownership Status
+
+ggplot(data = loans_df, mapping = aes(x = loan_default, fill = homeownership)) +
+  geom_bar(stat = "count", position = "dodge") +
+  labs(title = "Loan Default Rate by Homeownership Status", x = "Loan Default Status", y = "Number of Customers")
+```
+
+
+
+## Question 4
+
+
+**Question**: **Are there differences between loan default rates and a customer's missed payment history in the last 2 years?**
+
+**Answer**: Yes, the data indicates that customers who have missed payment within the last 2 years are roughly 9% more likely to default on their loan than customer who have no missed payments. Of the customers who missed payments, 45% of them defaulted on their loan, whereby customers who did not miss payments defaulted on loans 36% of the time.
+
+
+```{r}
+# Summary Table for Loan Default Rates by Missed Payment History
+
+loans_df %>%
+  group_by(missed_payment_2_yr) %>%
+  summarize(n_customers = n(),
+            customers_default = sum(loan_default == 'yes'),
+            default_percent = 100 * mean(loan_default == 'yes'))
+
+```
+
+
+
+## Question 5
+
+
+**Question**: **Is there a difference in loan default rates by annual income?**
+
+**Answer**: No, there does not seem to be a drastic change in proportion of customer who default on their loans relative to their annual income level. The change in income relative to the rate of defaulting is too minor to account for customers defaulting on their loans. As indicated in the histogram, the skewness of both sides is very similar, whereby the major difference in proportion only lies within the $40000-$60000 salary range.
+
+
+```{r}
+# Histogram for Loan Default Rates of Customer Annual Income Distribution
+
+ggplot(data = loans_df, aes(x = annual_income, y = ..density.., fill = loan_default)) +
+  geom_histogram(color = "white", bins = 20) +
+  facet_wrap(~ loan_default, nrow = 1) +
+  labs(title = "Annual Income Distribution of Customers (Loan Default - Yes/No)", x = "Annual Income", y = "Loan Default Status")
+
+
+```
+
+## Question 6
+
+
+**Question**: **Is there a difference in loan default rates in accordance with loan amount and the interest rate of the loan?**
+
+**Answer**: Yes: the box plot indicates how customers who received loans for larger amounts with lower interest rates had a much better chance of paying off the loan as opposed to customers who received less for the loan and were charged much higher interest rates. Looking at the plot, we can decipher how the range of defaulted loans expands much higher into risky interest rates with minimal capital gained from the loan.
+
+
+```{r}
+# Box Plot for Loan Default Rates of Loan Amount and Loan Interest Rate
+
+ggplot(data = loans_df, mapping = aes(x = loan_amount, y = interest_rate, fill = loan_default)) +
+  geom_boxplot() +
+  labs(title = "Loan Amount to Interest Rate by Loan Default Status (Y/N)", x = "Loan Amount", y = "Interest Rate") 
+  
+
+
+```
+
+
+# Predictive Modeling
+
+
+## Data Splitting
+
+```{r}
+set.seed(115)
+
+loans_split <- initial_split(loans_df, prop = 0.75, strata = loan_default)
+
+loans_training <- loans_split %>% training()
+
+loans_testing <- loans_split %>% testing()
+
+loans_folds <- vfold_cv(loans_training, v = 5)
+
+```
+
+
+## Feature Engineering
+
+```{r}
+loans_recipe <- recipe(loan_default ~ ., data = loans_training) %>%
+  step_YeoJohnson(all_numeric(), -all_outcomes()) %>%
+  step_normalize(all_numeric(), -all_outcomes()) %>%
+  step_dummy(all_nominal(), -all_outcomes())
+
+```
+
+
+
+## Model 1 (Logistic Regression)
+
+```{r}
+loans_logistic_model <- logistic_reg() %>%
+                        set_engine('glm') %>%
+                        set_mode('classification')
+
+loans_logistic_wf <- workflow() %>%
+                    add_model(loans_logistic_model) %>%
+                    add_recipe(loans_recipe)
+
+loans_logistic_fit <- loans_logistic_wf %>%
+                      fit(data = loans_training)
+
+loans_trained_model <- loans_logistic_fit %>%
+                        pull_workflow_fit()
+
+vip(loans_trained_model)
+
+last_fit_loans_logistic <- loans_logistic_wf %>% last_fit(split = loans_split)
+
+last_fit_loans_logistic %>% collect_metrics()
+
+last_fit_loans_logistic %>% collect_predictions()
+
+loans_logistic_pred <- last_fit_loans_logistic %>% collect_predictions()
+
+loans_logistic_pred %>% roc_curve(truth = loan_default, estimate = .pred_yes) %>% autoplot()
+
+conf_mat(loans_logistic_pred, truth = loan_default, estimate = .pred_class)
+
+```
+
+
+
+## Model 2 (LDA)
+
+```{r}
+loans_lda_model <- discrim_regularized(frac_common_cov = 1) %>%
+                  set_engine('klaR') %>%
+                  set_mode('classification')
+
+loans_lda_wf <- workflow() %>%
+                add_model(loans_lda_model) %>%
+                add_recipe(loans_recipe)
+
+loans_lastfit_lda <- loans_lda_wf %>% last_fit(split = loans_split)
+
+loans_lastfit_lda %>% collect_metrics()
+
+loans_lda_predictions <- loans_lastfit_lda %>% collect_predictions()
+
+loans_lda_predictions
+
+loans_lda_predictions %>% roc_curve(truth = loan_default, estimate = .pred_yes) %>% autoplot()
+```
+
+## Model 3 (Random Forest)
+
+```{r}
+loans_rf_model <- rand_forest(mtry = tune(), trees = tune(), min_n = tune()) %>%
+                  set_engine('ranger', importance = "impurity") %>%
+                  set_mode('classification')
+
+loans_rf_wf <- workflow() %>%
+              add_model(loans_rf_model) %>%
+              add_recipe(loans_recipe)
+
+set.seed(115)
+
+loans_rf_grid <- grid_random(mtry() %>% range_set(c(4, 12)),
+                             trees(),
+                             min_n(),
+                             size = 10)
+
+loans_rf_tuning <- loans_rf_wf %>%
+                  tune_grid(resamples = loans_folds,
+                            grid = loans_rf_grid)
+
+loans_rf_tuning %>% show_best('roc_auc')
+
+loans_best_rf <- loans_rf_tuning %>% select_best(metric = 'roc_auc')
+
+loans_best_rf
+
+loans_finalize_rf_wf <- loans_rf_wf %>% finalize_workflow(loans_best_rf)
+
+loans_rf_wf_fit <- loans_finalize_rf_wf %>% fit(data = loans_training)
+
+loans_rf_fit <- loans_rf_wf_fit %>% pull_workflow_fit()
+
+loans_rf_last_fit <- loans_finalize_rf_wf %>% last_fit(loans_split)
+
+loans_rf_last_fit %>% collect_metrics()
+
+loans_rf_pred <- loans_rf_last_fit %>% collect_predictions()
+
+loans_rf_pred
+
+loans_rf_pred %>% roc_curve(truth = loan_default, estimate = .pred_yes) %>% autoplot()
+```
+
+
+--- End of the Project ---
