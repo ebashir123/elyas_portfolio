@@ -27,7 +27,7 @@ library(discrim)
 loans_df <- read_rds("D:/R Downloads/loan_data.rds")
 loans_df
 ```
-![Loans df Screenshot](https://user-images.githubusercontent.com/89562611/246633037-72b60aeb-3152-41d6-a3f1-f636f88215fb.png)
+
 # Summary of Results
 
 ### Introduction
@@ -91,7 +91,7 @@ loans_df %>%
 
 
 ```
-![Application Type Table](https://user-images.githubusercontent.com/89562611/246633080-e6b30441-cb28-496c-8dda-cb9ed7de801e.png)
+
 
 
 ## Question 2
@@ -113,7 +113,7 @@ loans_df %>%
 
 
 ```
-![Term Length Table](https://user-images.githubusercontent.com/89562611/246633097-6dce39cc-d58b-426b-a0d3-41e7f40f66f8.png)
+
 
 ## Question 3
 
@@ -130,7 +130,7 @@ ggplot(data = loans_df, mapping = aes(x = loan_default, fill = homeownership)) +
   geom_bar(stat = "count", position = "dodge") +
   labs(title = "Loan Default Rate by Homeownership Status", x = "Loan Default Status", y = "Number of Customers")
 ```
-![Bar Chart](https://user-images.githubusercontent.com/89562611/246633113-e7f4e3ad-701c-4bf4-8d75-383ea048171c.png)
+
 
 
 ## Question 4
@@ -151,7 +151,7 @@ loans_df %>%
             default_percent = 100 * mean(loan_default == 'yes'))
 
 ```
-![Missed Payment Table](https://user-images.githubusercontent.com/89562611/246633146-8cdfcdf5-2a57-48aa-ac1f-25214f52e62b.png)
+
 
 
 ## Question 5
@@ -171,7 +171,7 @@ ggplot(data = loans_df, aes(x = annual_income, y = ..density.., fill = loan_defa
   labs(title = "Annual Income Distribution of Customers (Loan Default - Yes/No)", x = "Annual Income", y = "Loan Default Status")
 
 ```
-![Histogram](https://user-images.githubusercontent.com/89562611/246633159-ac97d32d-8d3e-4673-bdf6-f88eeb1e6b16.png)
+
 
 ## Question 6
 
@@ -189,7 +189,7 @@ ggplot(data = loans_df, mapping = aes(x = loan_amount, y = interest_rate, fill =
   labs(title = "Loan Amount to Interest Rate by Loan Default Status (Y/N)", x = "Loan Amount", y = "Interest Rate") 
   
 ```
-![Box Plot](https://user-images.githubusercontent.com/89562611/246633173-6024382d-054b-468a-a915-416cce3190e6.png)
+
 
 # Predictive Modeling
 
