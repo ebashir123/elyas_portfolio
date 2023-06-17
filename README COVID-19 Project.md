@@ -21,7 +21,7 @@ To view and interact with the choropleth map, please follow these steps:
 Please note that a stable internet connection may be required for certain map functionalities, as some features rely on online map tile services.
 
 ## Screenshots
-![Choropleth Map Screenshot]("C:/Users/elyas/Downloads/choropleth_map_texas.png")]("C:/Users/elyas/Downloads/choropleth_map_texas.png")
+![Choropleth Map Screenshot](C:/Users/elyas/Downloads/choropleth_map_texas.png?raw=true "Optional Title")
 
 Here is a static screenshots of the choropleth map to give you an idea of its appearance and functionality.
 ## Dependencies
