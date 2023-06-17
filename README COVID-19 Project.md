@@ -23,8 +23,7 @@ Please note that a stable internet connection may be required for certain map fu
 ## Screenshots
 ![Choropleth Map Screenshot]("C:\Users\elyas\Downloads\choropleth_map_texas.png")
 
-Here are a few static screenshots of the choropleth map to give you an idea of its appearance and functionality.
-
+Here is a static screenshots of the choropleth map to give you an idea of its appearance and functionality.
 ## Dependencies
 - Python 
 - Jupyter Notebook 
