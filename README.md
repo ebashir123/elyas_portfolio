@@ -25,4 +25,4 @@ To access and run the projects in this portfolio:
 
 ## About Me
 I am an aspiring data analyst with experience in various aspects of data analytics and data science. Through these projects, I attempt to exemplify my skills in data analytics, data visualization, problem-solving, and real-world application by utilizing various tools. I am continuously learning to improve my ability to provide valuable insights via data-driven approaches.
-Feel free to reach out to me if you have any questions, feedback, or potential collaboration opportunities. You can contact me via email at [your email address](mailto:your@email.com) or connect with me on LinkedIn at [your LinkedIn profile URL]([https://www.linkedin.com/in/elyas-bashir-108637219/]).
+Feel free to reach out to me if you have any questions, feedback, or potential collaboration opportunities. You can contact me via email at [my email address](elyasbashir123@gmail.com) or connect with me on LinkedIn at [my LinkedIn profile URL](https://www.linkedin.com/in/elyas-bashir-108637219/).
