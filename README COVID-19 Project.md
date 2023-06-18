@@ -12,7 +12,7 @@ To view and interact with the choropleth map, please follow these steps:
 
 2. **Setup Environment**: Ensure you have the necessary dependencies installed, including Python, Jupyter Notebook, and the required libraries specified in the project.
 
-3. **Open the Notebook**: Navigate to the project directory and open the Jupyter Notebook file (`project.ipynb`) using Jupyter Notebook or JupyterLab.
+3. **Open the Notebook**: Navigate to the project directory and open the Jupyter Notebook file (`COVID-19 Portfolio Project Data Visualization.ipynb`) using Jupyter Notebook or JupyterLab.
 
 4. **Run the Notebook**: Execute the notebook cells in sequential order. This will load the data, process it, and generate the interactive choropleth map.
 
