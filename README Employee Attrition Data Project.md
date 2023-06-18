@@ -18,6 +18,8 @@ To view and interact with the visualizations, please follow these steps:
 
 4. **Install Required Packages**: If any required packages are not already installed, use the `install.packages()` function to install them. Here are the required packages for this project:
 
+5. **Install the 'EmployeeData.csv' file located in the repository.**
+
 ```R
 library(tidyverse)
 library(dplyr)
