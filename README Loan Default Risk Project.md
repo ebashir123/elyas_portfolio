@@ -16,7 +16,9 @@ To view and interact with the visualizations, please follow these steps:
 
 3. **Open the R Script**: Open the R script file (`Loan Default Rate Portfolio Project Exploratory Data Analysis+.Rmd`) using R Studio.
 
-4. **Install Required Packages**: If any required packages are not already installed, use the `install.packages()` function to install them. Here are the required packages for this project:
+4. **Install the 'loan_data.rds' file in the repository.**
+
+5. **Install Required Packages**: If any required packages are not already installed, use the `install.packages()` function to install them. Here are the required packages for this project:
 
 ```R
 library(tidyverse)
