@@ -1,0 +1,214 @@
+---
+title: "Employee Attrition Data Analysis Project"
+author: "Elyas Bashir"
+date: "03/26/2023"
+output:
+  pdf_document: default
+  word_document: default
+---
+
+## Introduction
+In this report we will address the factors that lead to employees leaving the company as well as further insights for top management to utilize moving forward. Essentially, we are addressing the question, "What are the components that allow management to minimize employee attrition?". 
+
+The study will include variables such as employee salary, satisfaction, weekly hours, etc. By utilizing these variables alongside the employees that may or may not leave the company, we are able to plot the relationship between variables in a visual manner. Additionally, we store relationships between variables in a readable data frame format. Both plots and data frames will include summaries that allow for a better understanding of the represented data and its efficacy.
+
+There are several questions that will be addressed regarding the relationships of variables within the data:
+
+1. Is there a relationship between job **salary** and employees leaving the company?
+2. Is there a relationship between employees leaving the company and their **weekly hours** worked?
+3. What is the relationship between employees leaving and their respective **job level**?
+4. Is there a relationship between an employee leaving the company, their **marital status**, and their respective **distance from home**?
+5. Is there a relationship between the **years worked** at a company and if the employee leaves?
+6. Is there a relationship between the number of **previous companies** worked for and employees leaving the company?
+
+
+These questions should be able to decipher the factors that may or may not contribute to higher employee attrition rates. We will be able to conclude from the data and modeling how to minimize the rise of employee attrition.
+
+For the remainder of this report, we will focus on  data analysis and modeling, followed by our conclusions and resulting discussions regarding our results, and the appendices.
+
+## Data and Model
+
+
+```{r, results='hide', message=FALSE,warning=FALSE }
+# Load the Employee Data csv file into a dataframe
+
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+employee_data <- read_csv('EmployeeData.csv')
+```
+
+### “Is there a relationship between job salary and employees leaving the company?”
+
+#### Data 
+The variables used for this question were *salary* and *left_company*. 
+
+#### Method 
+The methods used included both a summary data frame and a histogram.
+The data frame is comprised of the summary statistics of salary in conjunction with employees who did/did not leave the company. 
+The histogram indicates proportions via a density plot and it is faceted by left_company.
+
+```{r}
+# Summary for salary and left_company
+employee_data %>%
+  group_by(left_company) %>%
+  summarize(num_employees = n(),
+            min_salary = min(salary),
+            max_salary = max(salary),
+            avg_salary = mean(salary),
+            sd_salary = sd(salary),
+            pct_less_50k = mean(salary <= 50000))
+```
+
+```{r}
+# Plot for salary and left_company
+employee_data %>%
+  ggplot(mapping = aes(x = salary, y = ..density.., fill = left_company)) +
+  geom_histogram(color = "white", bins = 25) +
+  facet_wrap(~ left_company, nrow = 2) +
+  labs(title = "Salary Distribution of Employees (Left the Company - Yes/No)", x = "Salary (USD)", y = "Proportion of Employees")
+```
+
+#### Analysis 
+Employees who stayed with the company had an average salary of $97430, which is over $20000 more than employees who left.
+Of the employees with a salary of $50000 or below, only 9% are employees that did not leave, whereas 30% are those that did leave.
+
+#### Results 
+The data shows that employees who leave the company generally have lower salaries than employees who do not.
+Additionally, the disparity of 21% with employees making less than $50000 annually is a viable indicator that lower wages may lead to higher employee attrition.
+
+
+### “Is there a relationship between employees leaving the company and their weekly hours worked?”
+
+#### Data
+The variables used for this question were **weekly_hours** and **left_company**.
+
+#### Method
+The method used includes a summary data frame comprised of the primary summary statistics including the count, min, max, mean, and standard deviation.
+
+```{r}
+# Summary for hours_worked and left_company
+employee_data %>%
+  group_by(left_company) %>%
+  summarize(num_employees = n(),
+            min_hours = min(weekly_hours),
+            max_hours = max(weekly_hours),
+            avg_hours = mean(weekly_hours),
+            sd_hours = sd(weekly_hours))
+```
+
+#### Analysis
+Employees who stayed with the company had an average working week of 48 hours, while those that left the company worked 58 hours on average. The minimum number of hours worked by employees who left the company was 51 hours, which is 11 hours more than the national average.
+
+#### Results
+The data shows that employees who leave the company average more than 10 working hours per week than those that do not. 
+Furthermore, employees who have left the company worked a minimum of 51 hour work weeks, which is far more than the national average of 40 hour work weeks. Therefore, we may conclude that weekly hours contribute to higher employee attrition.
+
+
+### “What is the relationship between employees leaving and their respective job level?”
+
+#### Data
+The variables used for this question were **job_level** and **left_company**.
+
+#### Method
+The method included a bar chart of the data. 
+
+```{r}
+# Plot for job_level and left_company
+employee_data %>%
+  ggplot(mapping = aes(x = job_level, fill = left_company)) +
+  geom_bar(stat = "count", position = "dodge") +
+  labs(title = "Employee's Job Status (Yes/No) by Job Level", x = "Job Level", y = "Number of Employees")
+```
+
+#### Analysis
+Senior managers, directors, and vice presidents were the roles with the lowest percent of attrition, whereas associates and managers were much higher. 
+
+#### Results
+It is evident that employees in more powerful, corporate roles such as senior managers, directors, and vice presidents tend to stick with a company more often than those with less power such as associates or lower-level managers. 
+
+
+### Is there a relationship between an employee leaving the company, their **marital status**, and their respective **distance from home**?
+
+#### Data
+The variables used for this question were **miles_from_home**, **marital_status**, and **left_company**.
+
+#### Method
+The method includes a box plot.
+
+```{r}
+# Plot for mile_from_home, marital_status, and left_company
+employee_data %>%
+  ggplot(mapping = aes(x = miles_from_home, y = marital_status, fill = left_company)) +
+  geom_boxplot() +
+  labs(title = "Miles from home to Marital Status by Job Status (Yes/No)", x = "Miles from home", y = "Marital status")
+```
+
+#### Analysis
+The boxplot indicates outliers for single and divorced employees who did not leave the company. Additionally, it highlights some comparisons between the marital status of employees (both current and past) as well as their relative distance from home when working. 
+
+#### Results
+Per the data, it seems that marital status has a miniscule effect alone on causing employee attrition. However, combined with another factor such as distance from home, it shows how most employees that left the company were (on average) working farther away from home than those who did not. Therefore, we may conclude that marital status is not a major factor in employee attrition rates, yet it is a good indicator of how employee attrition rates change in relation to their distance from home.
+
+
+### Is there a relationship between the **years worked** at a company and if the employee leaves?
+
+#### Data
+The variables used for this question were **yrs_at_company** and **left_company**.
+
+#### Method
+The method includes summary statistics. The minimum (min()) function was not included as most fields had outlier employees with 0 years of experience.
+
+```{r}
+employee_data %>%
+  group_by(left_company) %>%
+  select(left_company, yrs_at_company) %>%
+  summarize(num_employees = n(), 
+            max_years = max(yrs_at_company),
+            mean_years = mean(yrs_at_company),
+            sd_years = sd(yrs_at_company),
+            pct_less_5yrs = mean(yrs_at_company <= 5),
+            pct_less_10yrs = mean(yrs_at_company <= 10))
+```
+
+#### Analysis
+The objective of this question seeks to understand if employees of the company leave the company at an early stage (within 5 years), a late stage (within 10 years), or not at all. The data indicates that on average, 68% of employees that left the company worked at most 5 years, whereas a whopping 92% of them worked 10 years or less before leaving. As for employees who stayed with the company, roughly 50% of them worked less than 5 years and 82% of them worked less than 10 years.
+
+#### Results
+We can conclude that the difference between years worked and employee attrition does in fact exist. Taking a look at our analysis, there is a disparity of 18% whereby employees left the company before reaching the 5 year mark, and a disparity of 10% for those working at most 10 years. Essentially, we can derive from the summary table that many employees that leave the company end up doing it before working 10 years, which accounts for 92% of employees that leave. In addition, the average number of working years for employees who leave is 5.13 years. In contrast, employees who stay average 7.37 working years. While this alone may be attributed to the fact that those who leave the company are no longer working for that company and hence the average can no longer move up, it is imperative to understand that a vast majority of former employees do not work for the company long-term with only 8% working more than a decade.
+
+
+### Is there a relationship between the number of **previous companies** worked for and employees leaving the company?
+
+#### Data 
+The variables used for this question were **previous_companies** and **left_company**.
+
+#### Method
+The method includes summary statistics.
+
+```{r}
+employee_data %>%
+  group_by(left_company) %>%
+  summarize(num_employees = n(),
+            min_company = min(previous_companies),
+            max_company = max(previous_companies),
+            mean_company = mean(previous_companies),
+            sd_company = sd(previous_companies),
+            pct_less_3comp = mean(previous_companies <= 3))
+```
+
+#### Analysis
+The average number of previous companies for employees who stayed is 2.97, whereas the average for employees who left is 4.65. Furthermore, the percentage of employees that did not leave who worked at 3 or less companies was 81%. For employees that did leave the company, this number shrunk to 23%, a 58% decrease.
+
+#### Results
+Per the data, we can safely infer that the average number of employees who left the company had worked for more employers in the past than those who stayed with the company. Additionally, with only 23% of employees working 3 or less jobs in the past, it seems as though a trend has appeared whereby employees who work more jobs in the past are less likely to stay with their current employer. In this case, over 75% of employees that left had at least 4 jobs prior to their current one. Therefore, it is safe to conclude that the number of companies previously worked for is a factor in employees leaving the company.
+
+
+##	Conclusion(s)/Discussion. 
+To conclude our observations, we can summarize our findings with the various factors that attribute towards impacting employee attrition rates. For starters, we identified that salary is a major indicator of whether employees stayed with the company, whereby employees who averaged higher salaries tended to stay. This ties somewhat to our observation of job level in the sense that vice presidents, senior managers, and directors were more likely to stay as opposed to lower level managers and associates. It is generally known that the aforementioned roles average a higher salary than managers or associates. 
+
+In addition to these observations, we exemplified how weekly hours were a great indicator of employees leaving the company. Generally, those who left the company averaged more than 10 hours per week than those who stayed with the company. This somewhat ties to our observations regarding previous companies and the number of years at the company. This is due to the idea that employees who work standard work weeks tend to be more loyal and inclined to continue working at their company. As we look at the data and observations, we can identify how employees who worked in a lot of companies in the past tend to lack fidelity to their current company. Additionally, of these employees who leave, 68% of them leave before even working 5 years. Therefore, hours worked, previous companies, and years worked for the company are good indicators of factors that impact employee attrition.
+
+As for marital status, we can decipher from our visualization that it seems to have a minimal relationship with employee distance from home, however, the distance from home has a relationship to whether employees leave the company. Therefore, we may assume that marital status is not a factor in employee attrition, but distance from home is a factor.
+
+To summarize our findings, we believe that salary and number of hours worked are the two primary factors in employee attrition. In order to keep a company's employees engaged and avoid potential turnover, ensure that employees are paid a fair wage and working reasonable hours. It is important to note that the number of companies that an employee worked for, the distance from home to work, and the number of years an employee worked may impact employee attrition. Therefore, employers should seek to remedy employees in these topics when they have the opportunity to. For example, employers may offer remote work to employees who live far from work, or keep employees engaged in order to limit the risk that they leave for other companies. Lastly, employers should not be too concerned with their employees' marital status, as it does not have a huge bearing on turnover rates.
