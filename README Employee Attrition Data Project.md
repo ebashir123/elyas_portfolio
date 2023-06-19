@@ -5,7 +5,7 @@ Welcome to my data analysis project showcasing an analysis of **employee attriti
 ## Project Description
 In this project, I analyzed employee attrition data to address the factors that lead to increased attrition rates. Summary tables were used for descriptive statistics. Additionally, boxplots, bar charts, and histograms were utilized to visualize the data. The purpose of this analysis is to address the factors that impact employee attrition rates in order to allow insights regarding informed decision-making for companies to reduce the risk of increased employee attrition.
 
-**NOTE: You must run the file in order to see the tables/graphs/**
+**NOTE: You must run the file in order to see the tables/graphs**
 
 ## How to Run
 To view and interact with the visualizations, please follow these steps:
