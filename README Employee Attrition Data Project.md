@@ -1,4 +1,4 @@
-# Data Analysis Project: Loan Default Risk Analysis
+# Data Analysis Project: Employee Attrition Data Analysis
 
 Welcome to my data analysis project showcasing an analysis of **employee attrition data** from companies that explores the various factors that impact rates of attrition for employees.
 
